@@ -6,18 +6,18 @@ import ParticlesComponent from "../particlesBackground";
 import PageNavigation from "../navigation";
 
 export default function SearchMovie() {
-  const { value, currentPage, setcurrentPage } = useSearch();
+  const { value, setValue } = useSearch();
 
   const inputValue = document.querySelector("#search");
   const textInput = inputValue.value;
 
   const changePagePlusOne = () => {
-    setcurrentPage((prevPage) => prevPage + 1);
+    setValue((prevPage) => ({ ...prevPage, page: ++prevPage.page }));
   };
 
   const changePageLessOne = () => {
-    if (currentPage > 1) {
-      setcurrentPage((prevPage) => prevPage - 1);
+    if (value > 1) {
+      setValue((prevPage) => ({ ...prevPage, page: --prevPage.page }));
     }
   };
 
@@ -31,8 +31,8 @@ export default function SearchMovie() {
         </h1>
         <div className="w-full md:w-screen flex justify-center items-center pt-6">
           <div className="grid lg:grid-cols-3 sm:grid-cols-2 text-center gap-20">
-            {value && value.length > 0 ? (
-              value.map((element) => (
+            {value && value.results.length > 0 ? (
+              value.results.map((element) => (
                 <div key={element.id} className="">
                   <MovieCard element={element} />
                 </div>
@@ -44,9 +44,10 @@ export default function SearchMovie() {
         </div>
       </div>
       <PageNavigation
-        currentPage={currentPage}
+        currentPage={value.page}
         changePagePlusOne={changePagePlusOne}
         changePageLessOne={changePageLessOne}
+        total_pages={value.results}
       />
     </>
   );

@@ -4,5 +4,4 @@ const useFetchMovies = async (url) => {
 
   return data;
 };
-
 export default useFetchMovies;
