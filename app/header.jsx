@@ -8,10 +8,10 @@ import { useSearch } from "./hooks/useSearch";
 
 export default function Header() {
   const [hover, setHover] = useState(false);
-  const { searchValue, setSearchValue } = useSearch();
+  const { searchValue, setSearchValue, inputText } = useSearch();
 
   return (
-    <div className="flex flex-col md:flex-row w-full gap-[20%] justify-center items-center bg-gray-950 shadow-yellow-shadow">
+    <div className="flex flex-col md:flex-row gap-[20%] justify-center items-center bg-gray-950 shadow-yellow-shadow">
       <h1 className="flex py-4 font-bold text-white bg-opacity-90">
         <Link href={"/"} className="flex items-center">
           <BiSolidCameraMovie color="yellow" size={"20px"} />
@@ -25,6 +25,7 @@ export default function Header() {
       </h2>
       <div className="flex h-6 items-center py-6 pb-8 md:py-0 md:pb-0">
         <input
+          ref={inputText}
           value={searchValue}
           onChange={(event) => setSearchValue(event.target.value)}
           id="search"

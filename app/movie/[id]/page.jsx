@@ -5,7 +5,6 @@ import { GrFormSchedule } from "react-icons/gr";
 import { FaStar } from "react-icons/fa";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import ParticlesComponent from "@/app/particlesBackground";
 import useFetchMovies from "@/app/hooks/hooks";
 
@@ -59,20 +58,20 @@ export default function AboutMovie() {
       <ParticlesComponent id="particles" />
       <main className="flex flex-col justify-center items-center">
         <main
-          className="flex flex-col rounded-xl bg-slate-950 bg-opacity-60 border-[1.5px] border-[#0cb7f2] 
-            shadow-blue-shadow w-[90%] lg:w-[45%] mt-[2%] pt-8"
+          className="flex rounded-xl bg-slate-950 bg-opacity-60 border-[1.5px] border-[#0cb7f2] 
+            shadow-blue-shadow mt-[2%] mb-[2%] max-w-[50%]"
         >
-          <section className="flex">
-            <div className="flex flex-col w-full items-center gap-4 relative p-4">
+          <section className="flex flex-col w-full relative p-6 gap-10 justify-center items-center">
+            <div className="flex w-full items-center justify-center gap-4 relative p-2">
               {Movie && (
                 <img
                   src={`${apiImage}${Movie.poster_path}`}
                   alt={Movie.title}
-                  className="w-[500px] rounded-xl"
+                  className="w-[350px] rounded-xl"
                 ></img>
               )}
-              <section className="flex flex-col text-center items-center gap-[12px]">
-                <h1 className="text-white text-[30px] underline font-bold">
+              <section className="flex flex-col text-center items-center gap-8">
+                <h1 className="text-white text-[30px] underline font-bold w-62">
                   {Movie && Movie.title}
                 </h1>
                 <h2 className="text-white font-bold">
@@ -91,29 +90,27 @@ export default function AboutMovie() {
                   <FaStar />
                   {Movie && Movie.vote_average}
                 </h5>
-
-                <p className="text-white text-[20px]">
-                  {Movie && Movie.overview}
-                </p>
+                <h6 className="flex text-white items-center gap-2">
+                  {Movie && `R$ ${Movie.budget}`}
+                </h6>
+                <div className="flex flex-col gap-8 justify-center items-center">
+                  <button
+                    id="addButton"
+                    onClick={addMovie}
+                    className="flex items-center justify-center gap-2 text-white border 
+                    py-2 font-bold hover:bg-[#0cb9f228] rounded-xl w-60 md:w-[19rem] xl:w-60 b-24
+                    bg-slate-950 bg-opacity-60 border-[#0cb7f2] shadow-blue-shadow"
+                  >
+                    {buttonText}
+                  </button>
+                </div>
               </section>
+            </div>
+            <div className="flex mb-[1rem] text-center rounded-xl text-white text-[20px] w-[100%]">
+              {Movie && Movie.overview}
             </div>
           </section>
         </main>
-        <div className="flex flex-col items-center xl:flex-row pb-8 justify-center gap-8 xl:gap-[2%] mt-8 xl:-ml-[15.5%]">
-          <button
-            id="addButton"
-            onClick={addMovie}
-            className="flex items-center justify-center gap-2 text-white border py-6 xl:py-2 font-bold hover:bg-[#0cb9f228] rounded-xl w-60 md:w-[19rem] xl:w-60 b-24 bg-slate-950 bg-opacity-60 border-[#0cb7f2] shadow-blue-shadow "
-          >
-            {buttonText}
-          </button>
-          <Link
-            href={"/"}
-            className="flex justify-center text-white py-6 xl:py-2 font-bold hover:bg-[#0cb9f228] rounded-xl w-40 b-24 bg-slate-950 bg-opacity-60 border-[1.5px] border-[#0cb7f2] shadow-blue-shadow "
-          >
-            Back to home
-          </Link>
-        </div>
       </main>
     </>
   );

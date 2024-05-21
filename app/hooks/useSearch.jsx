@@ -1,13 +1,14 @@
 "use client";
 
-import { createContext, useEffect, useContext, useState } from "react";
+import { createContext, useEffect, useContext, useState, useRef } from "react";
 import useFetchMovies from "./hooks";
 
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
+  const inputText = useRef(null);
   const [searchValue, setSearchValue] = useState("");
-  const [value, setValue] = useState({ page: 1 });
+  const [value, setValue] = useState({ page: 1, results: [] });
   const [pageIntro, setPageIntro] = useState(true);
 
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -24,12 +25,15 @@ export function ThemeProvider({ children }) {
           const nextPageUrl = `${apiUrl}/movie?query=${searchValue}&page=${
             value.page + 1
           }&${apiKey}`;
-          const nextPageMovies = await useFetchMovies(nextPageUrl);
-          movies.push(nextPageMovies[0]);
+          const nextPageData = await useFetchMovies(nextPageUrl);
+          const nextPageMovies = nextPageData.results;
+
+          if (nextPageMovies.length > 0) {
+            movies.push(nextPageMovies[0]);
+          }
         }
 
-        setValue(data);
-        console.log(value);
+        setValue({ ...data, results: movies });
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -47,6 +51,7 @@ export function ThemeProvider({ children }) {
         setValue,
         pageIntro,
         setPageIntro,
+        inputText,
       }}
     >
       {children}
