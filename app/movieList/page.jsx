@@ -18,7 +18,7 @@ export default function MovieList() {
   return (
     <>
       <ParticlesComponent id="particles" />
-      <div className="w-full md:w-screen flex justify-center items-center">
+      <div className="w-full md:w-screen flex justify-center items-center mt-[3%]">
         <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-20 p-6 text-center">
           {movieList.map((element) => (
             <div className="flex flex-col group relative" key={element.id}>

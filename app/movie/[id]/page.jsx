@@ -56,25 +56,37 @@ export default function AboutMovie() {
   return (
     <>
       <ParticlesComponent id="particles" />
-      <main className="flex flex-col justify-center items-center">
+      <main className="flex flex-col justify-center items-center min-w-[850px]">
         <main
           className="flex rounded-xl bg-slate-950 bg-opacity-60 border-[1.5px] border-[#0cb7f2] 
-            shadow-blue-shadow mt-[2%] mb-[2%] max-w-[50%]"
+            shadow-blue-shadow mt-[2%] mb-[2%] max-w-[50%] min-w-[700px]"
         >
           <section className="flex flex-col w-full relative p-6 gap-10 justify-center items-center">
-            <div className="flex w-full items-center justify-center gap-4 relative p-2">
+            <div className="flex w-full items-center justify-center gap-[10%] relative p-2 ">
               {Movie && (
                 <img
                   src={`${apiImage}${Movie.poster_path}`}
                   alt={Movie.title}
-                  className="w-[350px] rounded-xl"
+                  className="w-[350px] 2xl:w-[400px] rounded-xl"
                 ></img>
               )}
-              <section className="flex flex-col text-center items-center gap-8">
-                <h1 className="text-white text-[30px] underline font-bold w-62">
+              <section className="flex flex-col text-center items-center 2xl:gap-14 gap-8">
+                <h1
+                  className={`${
+                    Movie && Movie.title.length > 12
+                      ? "2xl:text-[25px] && 2xl:w-[250px]"
+                      : "2xl:text-[40px]"
+                  } text-white text-[30px] underline font-bold w-62`}
+                >
                   {Movie && Movie.title}
                 </h1>
-                <h2 className="text-white font-bold">
+                <h2
+                  className={`${
+                    Movie && Movie.tagline.length > 30
+                      ? "2xl:w-[250px] && 2xl:text-[15px] "
+                      : ""
+                  }text-white font-bold`}
+                >
                   {Movie && Movie.tagline}
                 </h2>
                 <h3 className="flex text-white items-center gap-2">
@@ -98,7 +110,7 @@ export default function AboutMovie() {
                     id="addButton"
                     onClick={addMovie}
                     className="flex items-center justify-center gap-2 text-white border 
-                    py-2 font-bold hover:bg-[#0cb9f228] rounded-xl w-60 md:w-[19rem] xl:w-60 b-24
+                    py-2 font-bold hover:bg-[#0cb9f228] rounded-xl w-60 b-24
                     bg-slate-950 bg-opacity-60 border-[#0cb7f2] shadow-blue-shadow"
                   >
                     {buttonText}
@@ -106,7 +118,7 @@ export default function AboutMovie() {
                 </div>
               </section>
             </div>
-            <div className="flex mb-[1rem] text-center rounded-xl text-white text-[20px] w-[100%]">
+            <div className="flex mb-[1rem] text-center rounded-xl text-white text-[20px] w-[100%] max-w-[730px]">
               {Movie && Movie.overview}
             </div>
           </section>
