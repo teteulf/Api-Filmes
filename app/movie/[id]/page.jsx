@@ -70,13 +70,13 @@ export default function AboutMovie() {
                   className="w-[350px] 2xl:w-[400px] rounded-xl"
                 ></img>
               )}
-              <section className="flex flex-col text-center items-center 2xl:gap-14 gap-8">
+              <section className="flex flex-col text-center items-center 2xl:gap-10 gap-8">
                 <h1
                   className={`${
-                    Movie && Movie.title.length > 12
-                      ? "2xl:text-[25px] && 2xl:w-[250px]"
-                      : "2xl:text-[40px]"
-                  } text-white text-[30px] underline font-bold w-62`}
+                    Movie && Movie.title.length > 30
+                      ? "2xl:text-[25px] && 2xl:w-[250px] && text-[18px]"
+                      : "2xl:text-[40px] && text-[30px]"
+                  } text-white underline font-bold w-[80%]`}
                 >
                   {Movie && Movie.title}
                 </h1>
