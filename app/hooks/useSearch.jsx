@@ -8,6 +8,7 @@ const ThemeContext = createContext();
 export function ThemeProvider({ children }) {
   const inputText = useRef(null);
   const [searchValue, setSearchValue] = useState("");
+  const [prevSearchValue, setPrevSearchValue] = useState("");
   const [value, setValue] = useState({ page: 1, results: [] });
   const [pageIntro, setPageIntro] = useState(true);
 
@@ -15,6 +16,8 @@ export function ThemeProvider({ children }) {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL_SEARCH;
 
   useEffect(() => {
+    setPrevSearchValue(searchValue);
+
     const fetchMovies = async () => {
       try {
         const searchUrl = `${apiUrl}/movie?query=${searchValue}&page=${value.page}&${apiKey}`;
@@ -33,7 +36,11 @@ export function ThemeProvider({ children }) {
           }
         }
 
-        setValue({ ...data, results: movies });
+        if (searchValue !== prevSearchValue) {
+          setValue({ page: 1, results: movies });
+        } else {
+          setValue({ ...data, results: movies });
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -41,7 +48,6 @@ export function ThemeProvider({ children }) {
 
     fetchMovies();
   }, [searchValue, value.page]);
-
   return (
     <ThemeContext.Provider
       value={{

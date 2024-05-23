@@ -59,10 +59,10 @@ export default function AboutMovie() {
       <main className="flex flex-col justify-center items-center min-w-[850px]">
         <main
           className="flex rounded-xl bg-slate-950 bg-opacity-60 border-[1.5px] border-[#0cb7f2] 
-            shadow-blue-shadow mt-[2%] mb-[2%] max-w-[50%] min-w-[700px]"
+            shadow-blue-shadow mt-[10%] md:mt-[2%] mb-[2%] max-w-[50%] min-w-[700px]"
         >
           <section className="flex flex-col w-full relative p-6 gap-10 justify-center items-center">
-            <div className="flex w-full items-center justify-center gap-[10%] relative p-2 ">
+            <div className="flex flex-col md:flex-row w-full items-center justify-center gap-[10%] relative p-2 ">
               {Movie && (
                 <img
                   src={`${apiImage}${Movie.poster_path}`}
@@ -73,7 +73,7 @@ export default function AboutMovie() {
               <section className="flex flex-col text-center items-center 2xl:gap-10 gap-8">
                 <h1
                   className={`${
-                    Movie && Movie.title.length > 30
+                    Movie && Movie.title.length > 20
                       ? "2xl:text-[25px] && 2xl:w-[250px] && text-[18px]"
                       : "2xl:text-[40px] && text-[30px]"
                   } text-white underline font-bold w-[80%]`}
