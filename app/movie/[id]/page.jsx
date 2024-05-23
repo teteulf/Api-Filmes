@@ -56,7 +56,7 @@ export default function AboutMovie() {
   return (
     <>
       <ParticlesComponent id="particles" />
-      <main className="flex flex-col justify-center items-center min-w-[850px]">
+      <main className="flex flex-col justify-center items-center md:min-w-[850px]">
         <main
           className="flex rounded-xl bg-slate-950 bg-opacity-60 border-[1.5px] border-[#0cb7f2] 
             shadow-blue-shadow mt-[10%] md:mt-[2%] mb-[2%] max-w-[50%] min-w-[700px]"

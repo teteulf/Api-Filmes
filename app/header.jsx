@@ -5,10 +5,15 @@ import Link from "next/link";
 import { IoSearchCircleOutline } from "react-icons/io5";
 import { useState } from "react";
 import { useSearch } from "./hooks/useSearch";
+import { useDebouncedCallback } from "use-debounce";
 
 export default function Header() {
   const [hover, setHover] = useState(false);
   const { searchValue, setSearchValue, inputText } = useSearch();
+
+  const debounce = useDebouncedCallback((event) => {
+    setSearchValue(event.target.value);
+  }, 2000);
 
   return (
     <div className="flex flex-col md:flex-row gap-[20%] justify-center items-center bg-gray-950 shadow-yellow-shadow">
@@ -26,8 +31,7 @@ export default function Header() {
       <div className="flex h-6 items-center py-6 pb-8 md:py-0 md:pb-0">
         <input
           ref={inputText}
-          value={searchValue}
-          onChange={(event) => setSearchValue(event.target.value)}
+          onChange={(event) => debounce(event)}
           id="search"
           type="text"
           className="text-white w-[150px] md:mb-0 rounded-xl bg-gray-950 border-2 border-[#0cb7f2] pl-[10px]"

@@ -7,6 +7,7 @@ const PageNavigation = ({
   changePageLessOne,
   total_pages,
 }) => {
+  debugger;
   return (
     <div className="flex items-center justify-center gap-10 pb-16 mt-10">
       <FiTriangle

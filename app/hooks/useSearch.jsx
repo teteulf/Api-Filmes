@@ -17,36 +17,38 @@ export function ThemeProvider({ children }) {
 
   useEffect(() => {
     setPrevSearchValue(searchValue);
+    if (searchValue !== "") {
+      const fetchMovies = async () => {
+        debugger;
+        try {
+          const searchUrl = `${apiUrl}/movie?query=${searchValue}&page=${value.page}&${apiKey}`;
+          const data = await useFetchMovies(searchUrl);
+          const movies = data.results;
 
-    const fetchMovies = async () => {
-      try {
-        const searchUrl = `${apiUrl}/movie?query=${searchValue}&page=${value.page}&${apiKey}`;
-        const data = await useFetchMovies(searchUrl);
-        const movies = data.results;
+          if (movies?.length === 20) {
+            const nextPageUrl = `${apiUrl}/movie?query=${searchValue}&page=${
+              value.page + 1
+            }&${apiKey}`;
+            const nextPageData = await useFetchMovies(nextPageUrl);
+            const nextPageMovies = nextPageData.results;
 
-        if (movies.length === 20) {
-          const nextPageUrl = `${apiUrl}/movie?query=${searchValue}&page=${
-            value.page + 1
-          }&${apiKey}`;
-          const nextPageData = await useFetchMovies(nextPageUrl);
-          const nextPageMovies = nextPageData.results;
-
-          if (nextPageMovies.length > 0) {
-            movies.push(nextPageMovies[0]);
+            if (nextPageMovies.length > 0) {
+              movies.push(nextPageMovies[0]);
+            }
           }
-        }
 
-        if (searchValue !== prevSearchValue) {
-          setValue({ page: 1, results: movies });
-        } else {
-          setValue({ ...data, results: movies });
+          if (searchValue !== prevSearchValue) {
+            setValue({ ...data, page: 1, results: movies });
+          } else {
+            setValue({ ...data, results: movies });
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error);
         }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+      };
 
-    fetchMovies();
+      fetchMovies();
+    }
   }, [searchValue, value.page]);
   return (
     <ThemeContext.Provider

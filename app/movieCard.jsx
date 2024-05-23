@@ -10,9 +10,13 @@ export default function MovieCard({ element }) {
         alt={element.title}
         className="flex items-center rounded-xl border border-black w-[300px]"
       />
-      <h2 className="text-white font-bold">{element.title}</h2>
+      <h2 title={element.title} className="text-white font-bold">
+        {element.title.length > 35
+          ? element.title.substr(0, 35) + "..."
+          : element.title}
+      </h2>
       <p className="flex items-center gap-2 justify-center text-white">
-        <FaStar color="#f1e702" />
+        <FaStar color="#d9d246" />
         {element.vote_average}
       </p>
       <Link
