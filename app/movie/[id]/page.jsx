@@ -56,13 +56,13 @@ export default function AboutMovie() {
   return (
     <>
       <ParticlesComponent id="particles" />
-      <main className="flex flex-col justify-center items-center md:min-w-[850px]">
+      <main className="flex flex-col justify-center items-center md:min-w-[850px] ">
         <main
           className="flex rounded-xl bg-slate-950 bg-opacity-60 border-[1.5px] border-[#0cb7f2] 
-            shadow-blue-shadow mt-[10%] md:mt-[2%] mb-[2%] max-w-[50%] min-w-[700px]"
+            shadow-blue-shadow mt-[10%] md:mt-[2%] mb-[2%] md:max-w-[50%] md:min-w-[700px] min-w-[300px] w-[80%] md:w-auto"
         >
           <section className="flex flex-col w-full relative p-6 gap-10 justify-center items-center">
-            <div className="flex flex-col md:flex-row w-full items-center justify-center gap-[10%] relative p-2 ">
+            <div className="flex flex-col md:flex-row w-full items-center justify-center gap-10 relative p-2 ">
               {Movie && (
                 <img
                   src={`${apiImage}${Movie.poster_path}`}

@@ -19,7 +19,6 @@ export function ThemeProvider({ children }) {
     setPrevSearchValue(searchValue);
     if (searchValue !== "") {
       const fetchMovies = async () => {
-        debugger;
         try {
           const searchUrl = `${apiUrl}/movie?query=${searchValue}&page=${value.page}&${apiKey}`;
           const data = await useFetchMovies(searchUrl);
