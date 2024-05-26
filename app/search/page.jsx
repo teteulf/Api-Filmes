@@ -22,7 +22,7 @@ export default function SearchMovie() {
     <>
       <div>
         <ParticlesComponent />
-        <h1 className="text-white flex items-center justify-center my-10 text-[30px]">
+        <h1 className="text-white flex items-center justify-center my-10 text-[15px] md:text-[30px]">
           SHOWING RESULTS FOR "
           <strong className="text-[#d9d246]">{inputText.current.value}</strong>"
         </h1>
