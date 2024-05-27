@@ -113,7 +113,7 @@ export default function Home() {
                 <p>
                   {" "}
                   You can check the code used to create this app on my github,
-                  by clicking on the icons up there
+                  by clicking on the icon up there.
                 </p>
               </div>
             </div>

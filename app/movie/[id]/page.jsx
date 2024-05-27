@@ -10,9 +10,8 @@ import Image from "next/image";
 import useLocalStorage from "@/app/hooks/useLocalStorage";
 
 export default function AboutMovie() {
-  const { addItem, removeItem } = useLocalStorage("movieList");
+  const { addItem } = useLocalStorage("movieList");
   const { id } = useParams();
-  const [buttonClicked, setButtonClicked] = useState(false);
   const [buttonText, setButtonText] = useState("");
   const [Movie, setMovie] = useState();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -103,6 +102,7 @@ export default function AboutMovie() {
                     id="addButton"
                     onClick={() => {
                       addItem(Movie);
+                      setButtonText("Movie added to movie list");
                     }}
                     className="flex items-center justify-center gap-2 text-white border 
                     py-2 font-bold hover:bg-[#0cb9f228] rounded-xl w-60 b-24
