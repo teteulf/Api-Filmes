@@ -7,8 +7,10 @@ import { useParams } from "next/navigation";
 import { useEffect, useState, useCallback } from "react";
 import ParticlesComponent from "@/app/particlesBackground";
 import Image from "next/image";
+import useLocalStorage from "@/app/hooks/useLocalStorage";
 
 export default function AboutMovie() {
+  const { addItem, removeItem } = useLocalStorage("movieList");
   const { id } = useParams();
   const [buttonClicked, setButtonClicked] = useState(false);
   const [buttonText, setButtonText] = useState("");
@@ -41,18 +43,6 @@ export default function AboutMovie() {
       );
     }
   }, [Movie, MovieExistsInList]);
-
-  const addMovie = () => {
-    if (!buttonClicked && Movie) {
-      if (!MovieExistsInList()) {
-        const movieList = JSON.parse(localStorage.getItem("movieList")) || [];
-        movieList.push(Movie);
-        localStorage.setItem("movieList", JSON.stringify(movieList));
-        setButtonText("Movie Added to movie list");
-        setButtonClicked(true);
-      }
-    }
-  };
 
   return (
     <>
@@ -111,7 +101,9 @@ export default function AboutMovie() {
                 <div className="flex flex-col gap-8 justify-center items-center">
                   <button
                     id="addButton"
-                    onClick={addMovie}
+                    onClick={() => {
+                      addItem(Movie);
+                    }}
                     className="flex items-center justify-center gap-2 text-white border 
                     py-2 font-bold hover:bg-[#0cb9f228] rounded-xl w-60 b-24
                     bg-slate-950 bg-opacity-60 border-[#0cb7f2] shadow-blue-shadow"
