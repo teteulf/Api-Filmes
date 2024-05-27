@@ -2,7 +2,7 @@
 
 import { BiSolidCameraMovie } from "react-icons/bi";
 import Link from "next/link";
-import { IoSearchCircleOutline } from "react-icons/io5";
+import { IoSearch } from "react-icons/io5";
 import { useState } from "react";
 import { useSearch } from "./hooks/useSearch";
 import { useDebouncedCallback } from "use-debounce";
@@ -28,7 +28,7 @@ export default function Header() {
           Movie List
         </Link>
       </h2>
-      <div className="flex h-6 items-center py-6 pb-8 md:py-0 md:pb-0">
+      <div className="flex h-6 items-center py-6 pb-8 md:py-0 md:pb-0 gap-2">
         <input
           ref={inputText}
           onChange={(event) => debounce(event)}
@@ -37,9 +37,9 @@ export default function Header() {
           className="text-white w-[150px] md:mb-0 rounded-xl bg-gray-950 border-2 border-[#0cb7f2] pl-[10px]"
         />
         <Link href={"/search"} className="cursor-pointer">
-          <IoSearchCircleOutline
+          <IoSearch
             color={hover ? "white" : "#0cb7f2"}
-            size={35}
+            size={27}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
           />

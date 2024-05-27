@@ -47,7 +47,7 @@ export default function AboutMovie() {
   return (
     <>
       <ParticlesComponent id="particles" />
-      <main className="flex flex-col justify-center items-center md:min-w-[850px] ">
+      <main className="flex flex-col justify-center items-center md:min-w-[780px] ">
         <main
           className="flex rounded-xl bg-slate-950 bg-opacity-60 border-[1.5px] border-[#0cb7f2] 
             shadow-blue-shadow mt-[10%] md:mt-[2%] mb-[2%] md:max-w-[50%] md:min-w-[700px] min-w-[300px] w-[80%] md:w-auto"
@@ -63,13 +63,13 @@ export default function AboutMovie() {
                   height={450}
                 />
               )}
-              <section className="flex flex-col text-center items-center 2xl:gap-10 gap-8">
+              <section className="flex flex-col text-center items-center 2xl:gap-10 gap-8 md:w-[50%]">
                 <h1
                   className={`${
                     Movie && Movie.title.length > 20
-                      ? "2xl:text-[25px] && 2xl:w-[250px] && text-[18px]"
+                      ? "2xl:text-[18px] 2xl:w-[250px] md:text-[18px]"
                       : "2xl:text-[40px] && text-[30px]"
-                  } text-white underline font-bold w-[80%]`}
+                  } text-white underline font-bold `}
                 >
                   {Movie && Movie.title}
                 </h1>
