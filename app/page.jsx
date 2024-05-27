@@ -64,14 +64,14 @@ export default function Home() {
         <main className="w-full h-screen flex items-center justify-center md:-mt-[3%] text-white">
           <div
             className="relative flex items-center justify-center bg-gray-950 w-[90%] 
-           md:w-[50%] h-[70%] md:h-[70%] rounded-[10px] p-6 border border-[#0cb7f2]"
+           md:w-[50%] h-[70%] min-h-[300px] min-w-[350px] rounded-[10px] p-6 border border-[#0cb7f2]"
           >
-            <div className=" flex flex-col justify-center items-center -top-16">
+            <div className="flex flex-col">
               <div className="flex flex-col justify-center items-center gap-0 md:gap-4">
                 <div className="absolute right-0 top-0 transform transition-transform duration-300 hover:rotate-90 cursor-pointer">
                   <IoMdClose size={30} onClick={handleIntroDismiss} />
                 </div>
-                <h1 className="absolute top-0 text-[30px] font-bold">
+                <h1 className="absolute top-0 text-[20px] sm:text-[30px] font-bold">
                   Welcome to my APP
                 </h1>
                 <div className="absolute top-10 min-h-500:top-16 flex items-center gap-6">
@@ -94,7 +94,7 @@ export default function Home() {
                   </a>
                 </div>
               </div>
-              <div className="text-center">
+              <div className="text-center text-[10px] md:text-[16px]">
                 <p className=" h-full">
                   This is a website created by Theo Vargas Lefèvre, web
                   developer. The purpose of creating this App is to put into
