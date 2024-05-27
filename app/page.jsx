@@ -73,21 +73,29 @@ export default function Home() {
                   Welcome to my APP
                 </h1>
                 <div className="absolute top-10 min-h-500:top-16 flex items-center gap-6">
-                  <a className="cursor-pointer hover:animate-bounce">
+                  <a
+                    href="https://wa.me/5511975231490"
+                    className="cursor-pointer hover:animate-bounce"
+                    target="blank"
+                  >
                     <FaWhatsapp />
                   </a>
                   <a className="cursor-pointer hover:animate-bounce">
                     <FaLinkedinIn />
                   </a>
-                  <a className="cursor-pointer hover:animate-bounce">
+                  <a
+                    href="https://github.com/teteulf"
+                    className="cursor-pointer hover:animate-bounce"
+                    target="blank"
+                  >
                     <FaGithub />
                   </a>
                 </div>
               </div>
-              <p className="h-full text-center">
+              <p className=" h-full text-center ">
                 This is a website created by Theo Vargas Lefèvre, web developer.
                 The purpose of creating this App is to put into practice the
-                knowledge acquired from my studies. Here I used the MovieDB API
+                knowledge adquired from my studies. Here I used the MovieDB API
                 <a
                   className="text-blue-500 underline hover:text-blue-700 ml-2"
                   href="https://www.themoviedb.org/"
