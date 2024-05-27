@@ -94,23 +94,28 @@ export default function Home() {
                   </a>
                 </div>
               </div>
-              <p className=" h-full text-center ">
-                &quot;This is a website created by Theo Vargas Lefèvre, web
-                developer. The purpose of creating this App is to put into
-                practice the knowledge adquired from my studies. Here I used the
-                MovieDB API&quot;
-                <a
-                  className="text-blue-500 underline hover:text-blue-700 ml-2"
-                  href="https://www.themoviedb.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  https://www.themoviedb.org/
-                </a>
-                . <br />
-                You can check the code used to create this app on my github, by
-                clicking on the icons up there&apos;
-              </p>
+              <div className="text-center">
+                <p className=" h-full">
+                  This is a website created by Theo Vargas Lefèvre, web
+                  developer. The purpose of creating this App is to put into
+                  practice the knowledge adquired from my studies. Here I used
+                  the MovieDB API
+                  <a
+                    className="text-blue-500 underline hover:text-blue-700 ml-2"
+                    href="https://www.themoviedb.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    https://www.themoviedb.org/
+                  </a>
+                  .
+                </p>
+                <p>
+                  {" "}
+                  You can check the code used to create this app on my github,
+                  by clicking on the icons up there
+                </p>
+              </div>
             </div>
             <button
               className="absolute w-[200px] hover:bg-[#88842e] transition duration-500 bottom-4 p-2 rounded-xl bg-[#d9d246] text-black invisible min-h-500:visible"
