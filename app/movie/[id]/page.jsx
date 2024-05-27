@@ -6,7 +6,6 @@ import { FaStar } from "react-icons/fa";
 import { useParams } from "next/navigation";
 import { useEffect, useState, useCallback } from "react";
 import ParticlesComponent from "@/app/particlesBackground";
-import useFetchMovies from "@/app/hooks/hooks";
 import Image from "next/image";
 
 export default function AboutMovie() {
@@ -21,7 +20,8 @@ export default function AboutMovie() {
   useEffect(() => {
     const movieUrl = `${apiUrl}${id}?${apiKey}`;
     const FetchMovieData = async () => {
-      const data = await useFetchMovies(movieUrl);
+      const res = await fetch(movieUrl);
+      const data = await res.json();
       setMovie(data);
     };
     FetchMovieData();
@@ -106,7 +106,7 @@ export default function AboutMovie() {
                   {Movie && Movie.vote_average}
                 </h5>
                 <h6 className="flex text-white items-center gap-2">
-                  {Movie && `R$ ${Movie.budget}`}
+                  {Movie && `US$ ${Movie.budget}`}
                 </h6>
                 <div className="flex flex-col gap-8 justify-center items-center">
                   <button

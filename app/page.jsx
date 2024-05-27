@@ -3,11 +3,10 @@
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
 import { FaGithub, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import MovieCard from "./movieCard";
 import ParticlesComponent from "./particlesBackground";
 import PageNavigation from "./navigation";
-import useFetchMovies from "./hooks/hooks";
 import { useSearch } from "./hooks/useSearch";
 
 export default function Home() {
@@ -16,17 +15,19 @@ export default function Home() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-  const FetchMovies = async () => {
+  const FetchMovies = useCallback(async () => {
     try {
       const fetchPage = `${apiUrl}now_playing?page=${hypeMovies.page}&${apiKey}`;
-      const data = await useFetchMovies(fetchPage);
+      const res = await fetch(fetchPage);
+      const data = await res.json();
 
       if (window.innerWidth > 768) {
         if (data.results.length === 20) {
           const nextPage = `${apiUrl}now_playing?page=${
             hypeMovies.page + 1
           }&${apiKey}`;
-          const nextPageData = await useFetchMovies(nextPage);
+          const res = await fetch(nextPage);
+          const nextPageData = await res.json();
           data.results.push(nextPageData.results[0]);
         }
       }
@@ -36,25 +37,27 @@ export default function Home() {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
+  }, [hypeMovies.page, apiUrl, apiKey]);
 
   useEffect(() => {
     FetchMovies();
-  }, [hypeMovies.page, apiUrl, apiKey]);
+  }, [FetchMovies]);
 
   const handleIntroDismiss = () => {
     setPageIntro(false);
   };
 
   const changePagePlusOne = () => {
-    setHypeMovies((prevPage) => ({ ...prevPage, page: ++prevPage.page }));
+    setHypeMovies((prevPage) => ({ ...prevPage, page: prevPage.page + 1 }));
   };
 
   const changePageLessOne = () => {
     if (hypeMovies.page > 1) {
-      setHypeMovies((prevPage) => ({ ...prevPage, page: --prevPage.page }));
+      setHypeMovies((prevPage) => ({ ...prevPage, page: prevPage.page - 1 }));
     }
   };
+
+  console.log("renderizou");
 
   return (
     <>

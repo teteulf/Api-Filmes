@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, useEffect, useContext, useState, useRef } from "react";
-import useFetchMovies from "./hooks";
 
 const ThemeContext = createContext();
 
@@ -21,14 +20,16 @@ export function ThemeProvider({ children }) {
       const FetchMovies = async () => {
         try {
           const searchUrl = `${apiUrl}/movie?query=${searchValue}&page=${value.page}&${apiKey}`;
-          const data = await useFetchMovies(searchUrl); // Movido para fora do bloco if
+          const res = await fetch(searchUrl);
+          const data = await res.json();
           const movies = data.results;
 
           if (movies?.length === 20) {
             const nextPageUrl = `${apiUrl}/movie?query=${searchValue}&page=${
               value.page + 1
             }&${apiKey}`;
-            const nextPageData = await useFetchMovies(nextPageUrl); // Movido para fora do bloco if
+            const res = await fetch(nextPageUrl);
+            const nextPageData = await res.json();
             const nextPageMovies = nextPageData.results;
 
             if (nextPageMovies.length > 0) {
