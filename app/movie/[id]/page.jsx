@@ -4,9 +4,10 @@ import { IoTimeOutline } from "react-icons/io5";
 import { GrFormSchedule } from "react-icons/gr";
 import { FaStar } from "react-icons/fa";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import ParticlesComponent from "@/app/particlesBackground";
 import useFetchMovies from "@/app/hooks/hooks";
+import Image from "next/image";
 
 export default function AboutMovie() {
   const { id } = useParams();
@@ -19,31 +20,31 @@ export default function AboutMovie() {
 
   useEffect(() => {
     const movieUrl = `${apiUrl}${id}?${apiKey}`;
-    const fetchMovieData = async () => {
+    const FetchMovieData = async () => {
       const data = await useFetchMovies(movieUrl);
       setMovie(data);
     };
-    fetchMovieData();
-  }, [id]);
+    FetchMovieData();
+  }, [id, apiKey, apiUrl]);
 
-  const movieExistsInList = () => {
+  const MovieExistsInList = useCallback(() => {
     const movieList = JSON.parse(localStorage.getItem("movieList")) || [];
-    return movieList.some((movie) => movie.title === Movie.title);
-  };
+    return movieList.some((movie) => movie.title === Movie?.title);
+  }, [Movie]);
 
   useEffect(() => {
     if (Movie) {
       setButtonText(
-        movieExistsInList()
+        MovieExistsInList()
           ? "Movie added to movie list"
           : "Add movie to movie list"
       );
     }
-  }, [Movie]);
+  }, [Movie, MovieExistsInList]);
 
   const addMovie = () => {
     if (!buttonClicked && Movie) {
-      if (!movieExistsInList()) {
+      if (!MovieExistsInList()) {
         const movieList = JSON.parse(localStorage.getItem("movieList")) || [];
         movieList.push(Movie);
         localStorage.setItem("movieList", JSON.stringify(movieList));
@@ -64,11 +65,13 @@ export default function AboutMovie() {
           <section className="flex flex-col w-full relative p-6 gap-10 justify-center items-center">
             <div className="flex flex-col md:flex-row w-full items-center justify-center gap-10 relative p-2 ">
               {Movie && (
-                <img
+                <Image
                   src={`${apiImage}${Movie.poster_path}`}
                   alt={Movie.title}
                   className="w-[350px] 2xl:w-[400px] rounded-xl"
-                ></img>
+                  width={350}
+                  height={450}
+                />
               )}
               <section className="flex flex-col text-center items-center 2xl:gap-10 gap-8">
                 <h1

@@ -26,11 +26,11 @@ export default function SearchMovie() {
         <h1 className="text-white flex items-center justify-center my-10 text-[15px] md:text-[30px]">
           {value && value.results.length > 0 ? (
             <>
-              SHOWING RESULTS FOR "
+              &quot;SHOWING RESULTS FOR &quot;
               <strong className="text-[#d9d246]">
                 {inputText.current.value}
               </strong>
-              "
+              &quot;&quot;
             </>
           ) : (
             "NO RESULTS FOUND..."
@@ -38,7 +38,7 @@ export default function SearchMovie() {
         </h1>
 
         <div className="w-full md:w-screen flex justify-center items-center pt-6">
-          <div className="grid lg:grid-cols-3 sm:grid-cols-2 text-center gap-20">
+          <div className="grid xl:grid-cols-3 md:grid-cols-2 text-center gap-20">
             {value && value.results.length > 0
               ? value.results.map((element) =>
                   element ? (

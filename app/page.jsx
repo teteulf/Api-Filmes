@@ -16,7 +16,7 @@ export default function Home() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-  const fetchMovies = async () => {
+  const FetchMovies = async () => {
     try {
       const fetchPage = `${apiUrl}now_playing?page=${hypeMovies.page}&${apiKey}`;
       const data = await useFetchMovies(fetchPage);
@@ -37,9 +37,10 @@ export default function Home() {
       console.error("Error fetching data:", error);
     }
   };
+
   useEffect(() => {
-    fetchMovies();
-  }, [hypeMovies.page]);
+    FetchMovies();
+  }, [hypeMovies.page, apiUrl, apiKey]);
 
   const handleIntroDismiss = () => {
     setPageIntro(false);
@@ -93,9 +94,10 @@ export default function Home() {
                 </div>
               </div>
               <p className=" h-full text-center ">
-                This is a website created by Theo Vargas Lefèvre, web developer.
-                The purpose of creating this App is to put into practice the
-                knowledge adquired from my studies. Here I used the MovieDB API
+                &quot;This is a website created by Theo Vargas Lefèvre, web
+                developer. The purpose of creating this App is to put into
+                practice the knowledge adquired from my studies. Here I used the
+                MovieDB API&quot;
                 <a
                   className="text-blue-500 underline hover:text-blue-700 ml-2"
                   href="https://www.themoviedb.org/"
@@ -106,7 +108,7 @@ export default function Home() {
                 </a>
                 . <br />
                 You can check the code used to create this app on my github, by
-                clicking on the icon's up there
+                clicking on the icons up there&apos;
               </p>
             </div>
             <button
@@ -120,14 +122,14 @@ export default function Home() {
       ) : (
         <>
           <h1 className="text-white flex items-center justify-center my-10 text-[15px] md:text-[30px]">
-            SHOWING "
+            SHOWING &quot;
             <strong className="text-[rgb(217,210,70)]">
               CURRENTLY MOVIES ON STREAM
             </strong>
-            "
+            &quot;
           </h1>
           <div className="flex justify-center items-center pt-6">
-            <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-20 text-center">
+            <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-20 text-center">
               {!hypeMovies?.results ? (
                 <div className="w-screen h-screen flex justify-center items-center -mt-[45px]">
                   <AiOutlineLoading3Quarters

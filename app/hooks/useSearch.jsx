@@ -18,17 +18,17 @@ export function ThemeProvider({ children }) {
   useEffect(() => {
     setPrevSearchValue(searchValue);
     if (searchValue !== "") {
-      const fetchMovies = async () => {
+      const FetchMovies = async () => {
         try {
           const searchUrl = `${apiUrl}/movie?query=${searchValue}&page=${value.page}&${apiKey}`;
-          const data = await useFetchMovies(searchUrl);
+          const data = await useFetchMovies(searchUrl); // Movido para fora do bloco if
           const movies = data.results;
 
           if (movies?.length === 20) {
             const nextPageUrl = `${apiUrl}/movie?query=${searchValue}&page=${
               value.page + 1
             }&${apiKey}`;
-            const nextPageData = await useFetchMovies(nextPageUrl);
+            const nextPageData = await useFetchMovies(nextPageUrl); // Movido para fora do bloco if
             const nextPageMovies = nextPageData.results;
 
             if (nextPageMovies.length > 0) {
@@ -46,9 +46,10 @@ export function ThemeProvider({ children }) {
         }
       };
 
-      fetchMovies();
+      FetchMovies();
     }
-  }, [searchValue, value.page]);
+  }, [searchValue, value.page, apiKey, apiUrl, prevSearchValue]);
+
   return (
     <ThemeContext.Provider
       value={{
