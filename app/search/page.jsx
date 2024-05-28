@@ -28,11 +28,11 @@ export default function SearchMovie() {
         <h1 className="text-white flex items-center justify-center my-10 text-[15px] md:text-[30px]">
           {value && value.results.length > 0 ? (
             <>
-              &quot;SHOWING RESULTS FOR &quot;
+              SHOWING RESULTS FOR &quot;
               <strong className="text-[#d9d246]">
                 {inputText.current.value}
               </strong>
-              &quot;&quot;
+              &quot;
             </>
           ) : (
             "NO RESULTS FOUND..."
