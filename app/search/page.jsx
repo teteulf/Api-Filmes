@@ -10,11 +10,13 @@ export default function SearchMovie() {
 
   const changePagePlusOne = () => {
     setValue((prevPage) => ({ ...prevPage, page: prevPage.page + 1 }));
+    window.scrollTo(0, 0);
   };
 
   const changePageLessOne = () => {
     if (value.page > 1) {
       setValue((prevPage) => ({ ...prevPage, page: prevPage.page - 1 }));
+      window.scrollTo(0, 0);
     }
   };
 

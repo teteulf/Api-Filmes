@@ -49,12 +49,17 @@ export default function Home() {
 
   const changePagePlusOne = () => {
     setHypeMovies((prevPage) => ({ ...prevPage, page: prevPage.page + 1 }));
+    window.scrollTo(0, 0);
   };
 
   const changePageLessOne = () => {
-    if (hypeMovies.page > 1) {
-      setHypeMovies((prevPage) => ({ ...prevPage, page: prevPage.page - 1 }));
-    }
+    setHypeMovies((prevPage) => {
+      if (prevPage.page > 1) {
+        return { ...prevPage, page: prevPage.page - 1 };
+      }
+      return prevPage;
+    });
+    window.scrollTo(0, 0);
   };
 
   return (
