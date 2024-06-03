@@ -11,7 +11,7 @@ export default function MovieList() {
     <>
       <ParticlesComponent id="particles" />
       <div className="w-full md:w-screen flex justify-center items-center mt-[3%]">
-        <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-20 xl:gap-20  p-6 text-center">
+        <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-20 pb-6 pt-6 text-center">
           {storage.map((element) => (
             <div className="flex flex-col group relative" key={element.id}>
               <div className="absolute -right-3 lg:-right-4 xl:-right-3 -top-3 invisible group-hover:visible cursor-pointer">
